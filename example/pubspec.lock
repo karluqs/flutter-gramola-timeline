@@ -57,13 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  fh_sdk:
-    dependency: "direct main"
-    description:
-      name: fh_sdk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.5"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -89,7 +82,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.7"
+    version: "0.0.8"
   matcher:
     dependency: transitive
     description:

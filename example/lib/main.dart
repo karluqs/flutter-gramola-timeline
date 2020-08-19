@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fh_sdk/fh_sdk.dart';
-
 import 'package:gramola_timeline/gramola_timeline.dart';
 import 'package:gramola_timeline/config/stores.dart';
 
@@ -47,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   initSDK() async {
     String result;
     try {
-      result = await FhSdk.init();
+      result = "";
       _showSnackbar('init: ' + result);
     } on PlatformException catch (e) {
       _showSnackbar('init error: ' + e.message);
@@ -70,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     initSDK();
   }
 
-  void _showSnackbar (String message) {
+  void _showSnackbar(String message) {
     final snackbar = new SnackBar(
       content: new Text(message),
     );
@@ -80,8 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _eventIdFieldController = new TextEditingController();
-    final TextEditingController _userIdFieldController = new TextEditingController();
+    final TextEditingController _eventIdFieldController =
+        new TextEditingController();
+    final TextEditingController _userIdFieldController =
+        new TextEditingController();
     Container formSection = new Container(
       padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 16.0),
       child: new Row(
@@ -118,40 +118,41 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return new Scaffold(
-      key: scaffoldKey,
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            formSection,
-            new Container(
-                padding: const EdgeInsets.fromLTRB(32.0, 28.0, 32.0, 8.0),
-                child: new RaisedButton(
-                    child: new Text(_sdkInit ? 'Show timeline' : 'Init in progress...'),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    onPressed: !_sdkInit ? null : () {
-                      Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                          builder: (context) => new EventTimelineComponent(
-                            new TimelineConfiguration(
-                              eventId: _eventIdFieldController.text, 
-                              userId: _userIdFieldController.text, 
-                              imagesBaseUrl: ''
-                            )
-                          )
-                        ),
-                      );
-                    }
-                )
-            )
-          ],
+        key: scaffoldKey,
+        appBar: new AppBar(
+          title: new Text(widget.title),
         ),
-      )// This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              formSection,
+              new Container(
+                  padding: const EdgeInsets.fromLTRB(32.0, 28.0, 32.0, 8.0),
+                  child: new RaisedButton(
+                      child: new Text(
+                          _sdkInit ? 'Show timeline' : 'Init in progress...'),
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      onPressed: !_sdkInit
+                          ? null
+                          : () {
+                              Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) =>
+                                        new EventTimelineComponent(
+                                            new TimelineConfiguration(
+                                                eventId: _eventIdFieldController
+                                                    .text,
+                                                userId:
+                                                    _userIdFieldController.text,
+                                                imagesBaseUrl: ''))),
+                              );
+                            }))
+            ],
+          ),
+        ) // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }

@@ -1,6 +1,6 @@
 name: gramola_timeline
 description: Gramola timeline component
-version: 0.0.7
+version: 0.0.8
 author: Carlos Vicens <carlos.vicens.alonso@gmail.com>
 homepage: https://github.com/cvicens/flutter-gramola-timeline
 
@@ -10,9 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # FH
-  fh_sdk: ^0.6.5
 
   # Redux
   flutter_flux:
